@@ -1,0 +1,305 @@
+# DevOps Interview Questions (Categorized)
+
+This is a curated collection of real-world DevOps interview questions gathered from various companies, categorized by technology.
+
+---
+
+## Terraform
+
+1. What happens if your Terraform state file is accidentally deleted?
+2. What happens if multiple team members run `terraform apply` simultaneously?
+3. What happens if a resource fails halfway through a `terraform apply`?
+4. How does Terraform handle AWS API rate limits during a large apply?
+5. How do you detect drift if infrastructure was changed outside of Terraform?
+6. What happens if you delete a resource definition from your config?
+7. What issues might arise from provider API changes between Terraform versions?
+8. How does Terraform handle circular module dependencies?
+9. What happens if you exceed AWS service quotas during deployment?
+10. What if access to the remote backend storing Terraform state is lost?
+11. How do Terraform locks work and how are they implemented?
+12. What are null resources and how is `local-exec` used?
+13. How do you manage module dependencies in Terraform?
+14. What's the difference between `terraform fmt` and `terraform validate`?
+15. What are best practices for managing secrets outside `.tfstate`?
+16. Difference between `for_each` and `for` in Terraform?
+17. How do Terraform modules work and why should you use them?
+18. What is the purpose of the Terraform state file and how is it managed?
+19. What is DynamoDB’s role in Terraform remote state?
+20. How do you implement remote state locking in a team?
+21. How do you create an EKS cluster using Terraform?
+22. How do you manage multiple environments (dev, staging, prod) using Terraform?
+23. Compare Terraform to CloudFormation and ARM Templates.
+24. What is a `tfvars` file and how does it differ from `.tf`?
+25. Design a reusable module to create VPCs, subnets, and EC2s.
+
+---
+
+## Docker
+
+1. What is Docker and how does it work?
+2. How do you build a Docker image and run a container?
+3. What’s the difference between a Docker image and container?
+4. What are Docker namespaces?
+5. What is Docker build cache?
+6. How do you reduce Docker image size?
+7. What is the difference between CMD and ENTRYPOINT?
+8. What is a multi-stage Dockerfile? When would you use it?
+9. Write and explain a multi-stage Dockerfile.
+10. How do you share Docker images across teams/organizations?
+11. What is the difference between COPY and ADD in Dockerfiles?
+12. Where are Docker volumes stored?
+13. How do you manage secrets in a containerized environment?
+14. What happens when a container is deleted?
+15. How do you extract a `.tar` for Docker use?
+16. Command to remove all stopped containers.
+17. What happens to data inside a container if it’s removed?
+18. What Docker network types exist and what are their use cases?
+19. What’s the default Docker network and how is it used?
+20. How does container-to-container communication work?
+21. How many containers can Docker run concurrently?
+22. How do you scan Docker images for vulnerabilities?
+
+---
+
+## Kubernetes (K8s)
+
+1. Explain Kubernetes architecture and its components.
+2. What is the difference between a pod and a container?
+3. How do you check logs for a pod?
+4. What are CrashLoopBackOff and ImagePullBackOff errors?
+5. What happens when a pod is stuck in `Terminating`?
+6. What does `kubectl apply` do?
+7. How do you create a K8s cluster from scratch?
+8. What’s the difference between StatefulSet, Deployment, DaemonSet, and ReplicaSet?
+9. What is node affinity and how is it configured?
+10. What is a namespace in Kubernetes and how is it used?
+11. Explain Kubernetes autoscaling and the difference between HPA and VPA.
+12. Write a YAML file for a basic nginx deployment with 3 replicas.
+13. What’s the role of etcd and what happens if it fails?
+14. How does kubelet handle memory pressure?
+15. How do you isolate multi-tenant workloads in one cluster?
+16. How do you attach ConfigMaps to a pod?
+17. What is a readiness probe and why is it important?
+18. What happens if the kubelet loses connection to the API server?
+19. What causes pod eviction and how can it be prevented?
+20. How do you monitor DNS resolution failures (e.g., CoreDNS)?
+21. How do you enforce internal image registry usage via policy?
+22. What are the steps for setting up Prometheus with K8s?
+23. How do you ensure a highly available Kubernetes cluster?
+24. How do you debug a pod that exits with code 0 but fails silently?
+25. What is a PDB (PodDisruptionBudget) and its use?
+26. What are node taints and tolerations?
+
+---
+
+## Jenkins / CI-CD
+
+1. What is CI/CD and why is it important in DevOps?
+2. Explain the stages of a typical CI/CD pipeline.
+3. What is a Jenkinsfile and how is it used?
+4. How do you write and use shared libraries in Jenkins?
+5. What's the difference between scripted and declarative pipelines?
+6. What kind of applications do you deploy using Jenkins?
+7. How do you handle rollback in your pipeline?
+8. What is the purpose of a webhook in a pipeline?
+9. What are common reasons for a Jenkins build to succeed but produce no artifacts?
+10. How do you pass environment variables in Jenkins pipelines?
+11. What are freestyle jobs vs. pipeline jobs?
+12. How do you trigger jobs automatically using GitHub webhooks?
+13. What tools do you integrate into your pipeline for security scanning?
+14. How do you store build artifacts?
+15. What is pipeline as code and what are its benefits?
+16. Describe your branching strategy and how it integrates with CI/CD.
+17. What happens when a release branch breaks? How do you recover?
+18. How do you ensure quality control before a deployment?
+19. What’s your process for debugging failing stages in a pipeline?
+20. What security tools do you use in your CI/CD pipeline?
+21. Explain a scenario where rollback was triggered from a pipeline.
+
+---
+
+## AWS / Cloud
+
+1. What is EC2 and how does it differ from traditional servers?
+2. How do IAM roles and policies work in AWS?
+3. What is S3 and how is it used in DevOps pipelines?
+4. How do you configure AWS credentials securely in Jenkins?
+5. What’s the difference between public and private subnets?
+6. How do you enforce security group vs. NACL rules?
+7. What is CloudFront and where is it used?
+8. Explain the structure of a typical VPC setup.
+9. What are transit gateways and when should you use them?
+10. How do you handle cross-account IAM permissioning?
+11. How do you secure a private S3 bucket while enabling application access?
+12. How do you automate EC2 snapshot policies?
+13. How do you manage versioning in S3?
+14. What are artifacts and how are they used in a cloud deployment?
+15. How do you build and deploy a Lambda function with CI/CD?
+16. How do you push artifacts to Lambda?
+17. How do you manage secrets in AWS?
+18. What is Route53 and how do public/private zones differ?
+19. What are NAT gateways and their use?
+20. How do you monitor EC2 using CloudWatch?
+
+---
+
+## Git & GitOps
+
+1. What is GitOps and how does it differ from traditional CI/CD?
+2. How would you design a GitOps workflow for microservices?
+3. What is your branching strategy for production stability?
+4. How do you merge hotfixes during active development?
+5. How do you resolve Git conflicts during merges?
+6. How do you manage secrets in a GitOps repo securely?
+7. What tools integrate well with GitOps workflows (e.g., ArgoCD)?
+8. How do you trigger automated pipelines using GitHub Actions or webhooks?
+
+---
+
+## Ansible / Configuration Management
+
+1. What are roles and templates in Ansible?
+2. How do you manage sensitive data using Ansible Vault?
+3. What are facts in Ansible and how are they gathered?
+4. What’s the difference between static and dynamic inventory?
+5. How do you integrate Ansible with Jenkins?
+6. How do you organize a large playbook repository?
+7. How do you test playbooks before pushing them to production?
+8. What modules have you commonly used in Ansible?
+
+---
+
+## Linux / System Troubleshooting
+
+1. How do you identify high CPU usage on a Linux server?
+2. What tools do you use to monitor disk space and cleanup?
+3. How do you manage crontab entries and debug cron issues?
+4. What causes a service to fail on reboot and how do you fix it?
+5. How do you analyze logs from the command line?
+6. How do you handle file permission issues between users?
+7. What’s the difference between a hard link and a soft link?
+8. What does `chmod 555` mean?
+9. How do you open and monitor firewall ports in Linux?
+10. How do you clear cache in Linux systems?
+11. How do you find the PID of a process and kill it safely?
+
+---
+
+## Monitoring / Observability
+
+1. What is observability and how is it different from monitoring?
+2. What tools do you use for infrastructure and application monitoring?
+3. How do you integrate Prometheus with Kubernetes?
+4. How do you reduce CPU and disk usage in Prometheus?
+5. What is Node Exporter and how is it used?
+6. What kind of Grafana dashboards do you use?
+7. How do you set up email alerts in Grafana?
+8. What are common reasons alerts fail to trigger?
+9. How do you ensure your dashboards reflect business metrics?
+10. What’s your observability strategy for a multi-tenant setup?
+
+---
+
+## Helm / Helm Charts
+
+1. What is Helm and why is it used?
+2. What is the folder structure of a basic Helm chart?
+3. How do you deploy an application using Helm?
+4. How do you use values.yaml to customize deployments?
+5. What is Helm chart signing and how do you use it?
+6. Which tool do you use to sign Helm charts?
+7. What’s the difference between `helm install` and `helm upgrade`?
+
+---
+
+## Python / Shell Scripting
+
+1. What is a decorator in Python and its use case?
+2. How do you handle exceptions in Python?
+3. What’s the difference between list, tuple, and dictionary in Python?
+4. When do you use a dictionary vs. a list?
+5. How do you write a shell script to automate app deployment?
+6. How do you write a shell script to calculate factorial of a number?
+7. What tools do you use to validate scripts before pushing to prod?
+
+---
+
+## SQL / Databases
+
+1. What are DDL and DML commands in SQL?
+2. How do you find duplicate values in a table?
+3. What are subqueries and how do they work?
+4. Difference between LEFT JOIN, RIGHT JOIN, INNER JOIN.
+5. What’s the use of CHAR vs VARCHAR?
+6. What is the difference between PRIMARY KEY and UNIQUE?
+7. How do you design backup strategies for large databases?
+8. What is your approach to zero-downtime DB upgrades?
+
+---
+
+## Service Mesh / Istio
+
+1. What is Istio and why would you use it?
+2. How do you install Istio on a Kubernetes cluster?
+3. How do you create a custom Istio Gateway?
+4. How do you secure service-to-service communication using Istio?
+5. What are annotations used to connect Istio with ALB?
+6. What is the difference between ALB and NLB?
+
+---
+
+## Security / IAM / Secrets Management
+
+1. How do you store and manage secrets securely in CI/CD?
+2. What’s the difference between KMS and Secrets Manager?
+3. How do you manage IAM policies across multiple AWS accounts?
+4. How do you avoid secret exposure in Docker images or Terraform?
+5. How do you restrict access to sensitive Git branches or files?
+6. What tools do you use for image vulnerability scanning?
+
+---
+
+## Azure / Azure DevOps
+
+1. What is Azure DevOps and what services does it offer?
+2. Difference between Classic Pipeline and YAML Pipeline.
+3. What are build vs release pipelines?
+4. How do you integrate Azure DevOps with GitHub?
+5. What are service connections and how do they work?
+6. How do you configure approvals and gates in a pipeline?
+7. How do you manage secrets in Azure DevOps?
+8. Explain how you deploy AKS workloads using Azure Pipelines.
+9. What are Azure Boards and how do you track delivery progress?
+
+---
+
+## Architecture / Design Scenarios
+
+1. Design a GitOps pipeline for microservices. How do you handle rollback?
+2. Design a deployment freeze mechanism that halts 200+ parallel deployments.
+3. Design a disaster recovery test to validate a 4-hour RTO without downtime.
+4. How do you scale a single-node Docker Compose setup in AWS?
+5. Design a multi-tenant EKS architecture with strong workload isolation.
+6. What’s your investigation strategy when app traffic drops but no alerts fire?
+7. How do you enforce compliance scanning without slowing developer velocity?
+8. How do you scale databases when replica lag spikes?
+9. How do you ensure safe failover between two cloud regions?
+
+---
+
+## Behavioral & Managerial
+
+1. Tell me about yourself and your current project.
+2. Why do you want to join this company?
+3. Describe a situation where you handled production pressure.
+4. How do you deal with team disagreements or conflicts?
+5. What motivates you as a DevOps engineer?
+6. How do you prioritize tasks during high workload?
+7. What’s your leadership style? Have you led a project or team?
+8. Describe a failure and how you learned from it.
+9. How do you stay up-to-date with DevOps and cloud trends?
+10. Have you delivered a project under a strict deadline?
+11. What are your strengths and areas of improvement?
+12. Where do you see yourself in 5 years?
+
+---
