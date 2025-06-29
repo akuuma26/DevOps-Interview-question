@@ -755,3 +755,167 @@ Answer: Resources will fail to create with quota exceeded errors. Terraform mark
 10) What happens if you lose access to the remote backend storing your state?
 Answer: All Terraform operations fail until access is restored. Teams can't collaborate, and changes can't be applied safely. This effectively blocks all infrastructure changes.
 
+🟩 1. Terraform
+What happens if your Terraform state file is accidentally deleted?
+→ Terraform loses track of all resources and may attempt to recreate infrastructure on next apply.
+
+What happens if multiple team members run terraform apply simultaneously?
+→ Risk of state corruption; only one operation should lock the state file.
+
+What happens if a resource fails midway during terraform apply?
+→ Terraform leaves a partial state; tainted resources are retried on next apply.
+
+What happens when AWS API rate limits are hit during a large Terraform apply?
+→ Terraform retries, but the apply may eventually fail, leaving partial infrastructure.
+
+How do you detect if the infrastructure was changed outside of Terraform?
+→ Use terraform refresh or terraform plan -refresh-only to sync.
+
+What happens when you delete a resource from the Terraform config?
+→ It will be destroyed unless removed from state using terraform state rm.
+
+What if a provider API changes between Terraform versions?
+→ Compatibility issues may arise; refactor modules/resources accordingly.
+
+How does Terraform handle circular dependencies in modules?
+→ Plan/init fails with dependency cycle error; restructure modules.
+
+What happens if you exceed AWS service quotas during deployment?
+→ Resources fail to create; request quota increases before retrying.
+
+What if you lose access to the remote backend storing your state?
+→ Terraform operations fail until access is restored.
+
+How do Terraform locks work?
+→ Remote backends (like S3 with DynamoDB) use locking to avoid concurrent operations.
+
+How do you manage module dependencies in Terraform?
+→ Use depends_on, correct outputs/inputs, and isolated state files if needed.
+
+Difference between terraform fmt vs terraform validate?
+→ fmt formats code; validate checks syntax correctness.
+
+What are null resources and local-exec in Terraform?
+→ Used for provisioning tasks not covered by providers (e.g., shell scripts).
+
+What are alternatives to storing secrets in .tfstate?
+→ Use tools like Vault, SSM Parameter Store, or external data sources.
+
+What is the difference between for_each and for in Terraform?
+→ for_each is for resource creation; for is used within expressions or variables.
+
+How do Terraform modules work and why use them?
+→ Reusable blocks of configuration for better organization and DRY code.
+
+Purpose of the Terraform state file and how is it managed?
+→ Tracks infrastructure state; store securely (e.g., S3 + DynamoDB).
+
+What is DynamoDB’s role in Terraform?
+→ Used for state locking when the backend is S3.
+
+How do you avoid conflicts with the Terraform state file?
+→ Use remote state with locking, avoid concurrent applies.
+
+How do you create a Kubernetes cluster using Terraform?
+→ Use modules like eks (AWS) or google_container_cluster (GCP).
+
+🟦 2. Docker
+What is Docker (in your own words)?
+→ A containerization platform for running isolated apps with all dependencies.
+
+How do you build an image and run a container?
+→ docker build -t image-name . then docker run image-name.
+
+How do you create a container from an image?
+→ docker run command with appropriate flags.
+
+What happens if a Docker container is deleted?
+→ The container and its writable layer are removed unless volumes are used.
+
+What are Namespaces in Docker?
+→ Kernel features used to isolate containers (PID, Net, IPC, etc.).
+
+What is Docker build cache?
+→ Speeds up builds by reusing unchanged layers.
+
+How do you share Docker images across organizations?
+→ Use Docker Hub, ECR, or private registries with access control.
+
+How do you extract a .tar for Docker use?
+→ docker load < image.tar.
+
+Command to remove all stopped containers?
+→ docker container prune or docker rm $(docker ps -aq -f status=exited).
+
+Stages in Docker images?
+→ Multi-stage builds (builder + runtime stages).
+
+Why do we use ENTRYPOINT and CMD in Dockerfiles?
+→ ENTRYPOINT defines the main command; CMD provides default arguments.
+
+Where do you store Docker images?
+→ Docker Hub, AWS ECR, GitHub Container Registry, etc.
+
+How to reduce Docker image size?
+→ Use smaller base images, clean cache, multi-stage builds.
+
+🟥 3. Kubernetes (K8s)
+Explain Kubernetes architecture in simple terms.
+→ Master node (API, Scheduler, Controller) + Worker nodes (kubelet, kube-proxy, container runtime).
+
+Have you set up a K8s cluster from scratch? How?
+→ Tools like kubeadm, kops, or Terraform with cloud providers.
+
+What does kubectl apply do?
+→ Applies or updates Kubernetes resources from YAML files.
+
+How do you check pod logs?
+→ kubectl logs <pod-name>.
+
+How do you launch a pod using a Docker image?
+→ Define in a YAML manifest (image: my-image) and apply.
+
+What’s the difference between a pod and a container?
+→ Pod = group of containers + shared storage/network.
+
+Can multiple pods run under a single deployment?
+→ Yes, replicas of the same pod definition.
+
+What is CrashLoopBackOff? How to debug it?
+→ Pod keeps crashing repeatedly; check logs, liveness probes, init containers.
+
+What is an ImagePullBackOff?
+→ Failed to fetch the image; causes include wrong image name, missing auth.
+
+Command to go inside a pod?
+→ kubectl exec -it <pod-name> -- /bin/bash.
+
+How to attach a ConfigMap to a pod?
+→ Use envFrom or volumeMounts in the pod spec.
+
+ConfigMap not reflecting?
+→ May require pod restart or re-mount. Check subPath.
+
+Pod stuck in Terminating state—how to fix?
+→ Force delete with --grace-period=0 --force. Check finalizers.
+
+Steps to create a Kubernetes cluster?
+→ Choose provider/tool (EKS, Minikube, kubeadm), set up master + worker nodes.
+
+What is the master node and other nodes?
+→ Master handles control plane; worker nodes run application pods.
+
+How can you create Kubernetes classes (e.g., StorageClass)?
+→ Define YAML with kind: StorageClass or ResourceQuota, etc.
+
+Kubernetes errors and resolutions (general)?
+→ Common: CrashLoop, ImagePull, OOMKilled — use describe, logs, events.
+
+How do you integrate Prometheus with K8s?
+→ Helm charts or custom manifests; set service annotations for scraping.
+
+How do you define resource limits in K8s?
+→ In pod spec: resources.requests and resources.limits.
+
+Design a multi-tenant K8s architecture to isolate workloads.
+→ Use namespaces, resource quotas, network policies, PSPs.
