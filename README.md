@@ -1,4 +1,3 @@
 # DevOps-Interview-question
-Devops related different company interview question compilation /BR
-I am a inspiring DevOps engineer and i am looking to upgrade my learning with diffenent kind of emerging tech.
-Here i am compiling list of diffent DevOps interview question asked in different organisation for assosiate to senior level DevOps/Cloud engineer role
+I am an aspiring DevOps engineer and am continuously working to upgrade my skills with emerging technologies.
+This repository is a compilation of DevOps and Cloud Engineer interview questions asked in various organizations — ranging from Associate to Senior level roles.
